@@ -1,25 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {useState} from "react";
+import db from "./firebase";
+import CompanyList from "./components/CompanyList";
+import {Button, Message,Field} from "./ui";
+import './styles.css';
+import Modal from "./ui/Modal";
+import AddCompany from "./components/AddCompany";
+import Toaster from "./ui/Toaster";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [toasts, setToasts] = useState([])
+
+    return (
+        <div className="App">
+          <h1> 기업별 학생 관리 시스템 </h1>
+
+            <AddCompany setToasts = {setToasts} />
+
+          <CompanyList/>
+
+            <Toaster toasts={toasts}/>
+
+        </div>
+    );
 }
 
 export default App;
